@@ -28,8 +28,8 @@ public class SlackController {
 	@Autowired
 	private SlackService slackService;
 
-	@PostMapping("/sl/callback/webhooks")
-	public ResponseEntity<?> slackUserEventHandler(HttpServletRequest request, String data) throws Exception {
+	@PostMapping("/social-engagement/slack/user/events")
+	public ResponseEntity<?> eventHandler(HttpServletRequest request, String data) throws Exception {
 		log.info("-----Webhook method to retrieve events. from the post-----");
 		String pushedJsonAsString = IOUtils.toString(request.getInputStream(), "utf-8");
 
@@ -46,7 +46,7 @@ public class SlackController {
 	// By default Bolt for Java listens for all incoming requests at the
 	// /slack/events route, so for the Request URL you can enter your ngrok URL
 	// appended with /slack/events.
-	@PostMapping("/social-engagement/slack/events")
+	@PostMapping("/slack/events")
 	public ResponseEntity<?> slackBotEventHandler(HttpServletRequest request, String data) throws Exception {
 		log.info("-----Webhook method to retrieve events. from the post-----");
 		String pushedJsonAsString = IOUtils.toString(request.getInputStream(), "utf-8");
